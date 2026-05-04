@@ -2,80 +2,139 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>حجز سيشن</title>
+<title>Foudagarphy</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
-  background: url("your-image.jpg") no-repeat center center/cover;
+  background: #0f0f0f;
+  color: white;
 }
 
-.overlay {
-  background: rgba(0,0,0,0.6);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  background: rgba(255,255,255,0.95);
-  padding: 25px;
-  width: 320px;
-  border-radius: 15px;
+/* الهيدر */
+.header {
   text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  padding: 40px 20px;
 }
 
-h2 {
-  margin-bottom: 15px;
+.header img {
+  width: 200px;
+}
+
+.header h1 {
+  color: #d4af37;
+  margin-top: 10px;
+}
+
+/* الباكيدجات */
+.packages {
+  padding: 20px;
+}
+
+.package {
+  background: #1a1a1a;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  margin: 15px auto;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.package h3 {
+  color: #d4af37;
+}
+
+.price {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+/* فورم */
+.booking {
+  text-align: center;
+  padding: 30px;
 }
 
 input, select {
-  width: 90%;
+  width: 80%;
   padding: 10px;
   margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: none;
 }
 
 button {
-  background: #25D366;
-  color: white;
-  border: none;
+  background: #d4af37;
+  color: black;
   padding: 12px;
-  width: 95%;
+  border: none;
+  width: 85%;
   font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #1ebe5d;
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="overlay">
-  <div class="container">
-    <h2>احجز سيشن 📸</h2>
+<div class="header">
+  <img src="logo.png">
+  <h1>Foudagarphy Packages 2026</h1>
+</div>
 
-    <input type="text" id="name" placeholder="اسمك" required>
-    
-    <select id="package">
-      <option>Package 1</option>
-      <option>Package 2</option>
-      <option>Wedding Package</option>
-    </select>
+<div class="packages">
 
-    <input type="date" id="date" required>
-
-    <button onclick="sendToWhatsApp()">احجز دلوقتي</button>
+  <div class="package">
+    <h3>Package 1</h3>
+    <p>Session + Tableau + 10 Cards</p>
+    <div class="price">3000 LE</div>
   </div>
+
+  <div class="package">
+    <h3>Package 2</h3>
+    <p>Session + Album 30x45 + Tableau + 15 Cards</p>
+    <div class="price">4000 LE</div>
+  </div>
+
+  <div class="package">
+    <h3>Package 3</h3>
+    <p>Session + Album 30x60 + Tableau + 15 Cards</p>
+    <div class="price">4500 LE</div>
+  </div>
+
+  <div class="package">
+    <h3>Package 4</h3>
+    <p>Session + Album 30x80 + Tableau + 20 Cards</p>
+    <div class="price">5000 LE</div>
+  </div>
+
+  <div class="package">
+    <h3>Package 5</h3>
+    <p>Full Package + Mini Album + Frames + 30 Cards</p>
+    <div class="price">6000 LE</div>
+  </div>
+
+</div>
+
+<div class="booking">
+  <h2>احجز الآن</h2>
+
+  <input type="text" id="name" placeholder="اسمك">
+  
+  <select id="package">
+    <option>Package 1</option>
+    <option>Package 2</option>
+    <option>Package 3</option>
+    <option>Package 4</option>
+    <option>Package 5</option>
+  </select>
+
+  <input type="date" id="date">
+
+  <button onclick="sendToWhatsApp()">احجز عبر واتساب</button>
 </div>
 
 <script>
@@ -84,11 +143,6 @@ function sendToWhatsApp() {
   var pack = document.getElementById("package").value;
   var date = document.getElementById("date").value;
 
-  if(name === "" || date === ""){
-    alert("من فضلك املى البيانات");
-    return;
-  }
-
   var message = 
   "السلام عليكم 👋\n" +
   "عايز احجز سيشن 📸\n\n" +
@@ -96,7 +150,7 @@ function sendToWhatsApp() {
   "الباقة: " + pack + "\n" +
   "التاريخ: " + date;
 
-  var phone = "201551927206"; // حط رقمك هنا
+  var phone = "201551927206";
   var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
