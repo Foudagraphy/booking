@@ -8,19 +8,22 @@
 
 <style>
 
+/* ================= BACKGROUND FIX ================= */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(45deg, #000, #111);
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+              url("bg.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
   color: white;
 }
 
 .overlay {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.4);
   min-height: 100vh;
 }
 
-/* ANIMATION */
+/* ================= ANIMATION ================= */
 .fade {
   opacity: 0;
   transform: translateY(20px);
@@ -31,17 +34,16 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 .header {
   text-align: center;
   padding: 30px 15px;
 }
 
 .header img { width: 120px; }
-
 .header h1 { color: #ffd700; }
 
-/* GALLERY */
+/* ================= GALLERY ================= */
 .gallery {
   display: flex;
   gap: 12px;
@@ -60,7 +62,7 @@ body {
   transform: scale(1.07);
 }
 
-/* FULLSCREEN */
+/* ================= FULLSCREEN ================= */
 .fullscreen {
   position: fixed;
   top: 0;
@@ -79,7 +81,7 @@ body {
   max-height: 90%;
 }
 
-/* PACKAGES */
+/* ================= PACKAGES + ADDONS ================= */
 .packages {
   text-align: center;
   padding: 20px;
@@ -94,8 +96,8 @@ h2 { color: #ffd700; }
   padding: 18px;
   border-radius: 10px;
   max-width: 500px;
-  transition: 0.3s;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .package:hover {
@@ -106,19 +108,17 @@ h2 { color: #ffd700; }
   border: 2px solid #ffd700;
   background: #1f1a00;
   box-shadow: 0 0 15px rgba(255,215,0,0.5);
-  transform: scale(1.02);
 }
 
+/* ================= PRICE ================= */
 .price {
   font-size: 20px;
   margin-top: 10px;
 }
 
-.stars {
-  color: gold;
-}
+.stars { color: gold; }
 
-/* BOOKING */
+/* ================= BOOKING ================= */
 .booking {
   text-align: center;
   padding: 20px;
@@ -145,7 +145,7 @@ button {
   cursor: pointer;
 }
 
-/* FLOATING */
+/* ================= FLOATING ================= */
 .whatsapp, .call {
   position: fixed;
   right: 20px;
@@ -168,7 +168,7 @@ button {
   border-radius: 25px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media (max-width:768px){
   .gallery img { height: 120px; }
 }
@@ -184,7 +184,6 @@ button {
 <div class="header fade">
   <img src="logo.png">
   <h1>Foudagarphy</h1>
-  <p>We capture memories</p>
 </div>
 
 <!-- GALLERY -->
@@ -194,76 +193,60 @@ button {
   <img src="3.jpg" onclick="openImage(this.src)">
 </div>
 
-<!-- FULLSCREEN -->
 <div class="fullscreen" id="viewer" onclick="closeImage()">
   <img id="viewerImg">
 </div>
 
 <!-- PACKAGES -->
 <div class="packages fade">
-
 <h2>الباكيدجات</h2>
 
 <div class="package" onclick="selectPackage('Package 1', this)">
-<h3>🌟 Package 1</h3>
-<p>( session + tableau + 10 cards printed )</p>
-<p>( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</p>
+<h3>Package 1</h3>
 <div class="price">3000 LE</div>
-<div class="stars">★★★★★</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 2', this)">
-<h3>🌟 Package 2</h3>
-<p>( session + album 30×45 + tableau 40×30 + 15 cards )</p>
-<p>( تصوير السيشن + البوم ٣٠×٤٥ + تابلوه ٤٠×٣٠ + ١٥ كارت )</p>
+<h3>Package 2</h3>
 <div class="price">4000 LE</div>
-<div class="stars">★★★★★</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 3', this)">
-<h3>🌟 Package 3</h3>
-<p>( session + album 30×60 + tableau 50×40 + 20 cards )</p>
-<p>( تصوير السيشن + البوم ٣٠×٦٠ + تابلوه ٥٠×٤٠ + ٢٠ كارت )</p>
+<h3>Package 3</h3>
 <div class="price">4500 LE</div>
-<div class="stars">★★★★★</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 4', this)">
-<h3>🌟 Package 4</h3>
-<p>( session + album 30×80 + tableau 50×60 + 25 cards )</p>
-<p>( تصوير السيشن + البوم ٣٠×٨٠ + تابلوه ٥٠×٦٠ + ٢٥ كارت )</p>
+<h3>Package 4</h3>
 <div class="price">5000 LE</div>
-<div class="stars">★★★★★</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 5', this)">
-<h3>🔥 Package 5 VIP</h3>
-<p>( session + album window + mini album + frames + 2 tableau + 30 cards )</p>
-<p>( تصوير السيشن + البوم شباك + البوم صغير + برواز + ٢ تابلوه + ٣٠ كارت )</p>
+<h3>VIP Package</h3>
 <div class="price">6000 LE</div>
-<div class="stars">★★★★★</div>
 </div>
 
 </div>
 
-<!-- ADDONS -->
+<!-- ADDONS (MULTI SELECT) -->
 <div class="packages fade">
-<h2>الإضافات</h2>
+<h2>الإضافات (اختار أكتر من واحدة)</h2>
 
-<div class="package"><p>🎉 تصوير قاعة / بارتي</p><div class="price">1500 LE</div></div>
-<div class="package"><p>🏠 تصوير في البيت</p><div class="price">1200 LE</div></div>
-<div class="package"><p>🎬 فيديو برومو سيشن</p><div class="price">3500 LE</div></div>
-<div class="package"><p>🎬 فيديو سيشن + قاعة</p><div class="price">5000 LE</div></div>
-
+<div class="package addon" onclick="toggleAddon(this, 'تصوير قاعة / بارتي')">
+🎉 تصوير قاعة / بارتي - 1500 LE
 </div>
 
-<!-- NOTES -->
-<div class="packages fade">
-<h2>ملاحظات</h2>
+<div class="package addon" onclick="toggleAddon(this, 'تصوير بيت')">
+🏠 تصوير في البيت - 1200 LE
+</div>
 
-<div class="package"><p>🎁 خصم 10% للقطاع الطبي</p></div>
-<div class="package"><p>⏳ تسليم القاعة خلال 10 أيام</p></div>
-<div class="package"><p>📸 تسليم السيشن خلال 20 يوم</p></div>
+<div class="package addon" onclick="toggleAddon(this, 'فيديو سيشن')">
+🎬 فيديو سيشن - 3500 LE
+</div>
+
+<div class="package addon" onclick="toggleAddon(this, 'فيديو + قاعة')">
+🎬 فيديو + قاعة - 5000 LE
+</div>
 
 </div>
 
@@ -291,10 +274,12 @@ button {
 <!-- FLOATING -->
 <a class="whatsapp" href="https://wa.me/201551927206">💬</a>
 <a class="call" href="tel:201551927206">📞</a>
-<a href="#booking" class="fixed-book">احجز</a>
 
 <script>
 
+let selectedAddons = [];
+
+/* GALLERY */
 function openImage(src){
 document.getElementById("viewer").style.display="flex";
 document.getElementById("viewerImg").src=src;
@@ -304,8 +289,10 @@ function closeImage(){
 document.getElementById("viewer").style.display="none";
 }
 
+/* PACKAGE SELECT */
 function selectPackage(name, el){
-document.getElementById("package").value=name;
+
+document.getElementById("package").value = name;
 
 document.querySelectorAll(".package").forEach(p=>{
 p.classList.remove("active");
@@ -316,25 +303,44 @@ el.classList.add("active");
 document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 }
 
-function sendToWhatsApp(){
-var name=document.getElementById("name").value;
-var pack=document.getElementById("package").value;
-var date=document.getElementById("date").value;
+/* ADDONS MULTI SELECT */
+function toggleAddon(el, name){
 
-if(!name||!date){
+el.classList.toggle("active");
+
+if(selectedAddons.includes(name)){
+selectedAddons = selectedAddons.filter(a => a !== name);
+}else{
+selectedAddons.push(name);
+}
+
+}
+
+/* WHATSAPP */
+function sendToWhatsApp(){
+
+let name = document.getElementById("name").value;
+let pack = document.getElementById("package").value;
+let date = document.getElementById("date").value;
+
+if(!name || !date){
 alert("من فضلك أكمل البيانات");
 return;
 }
 
-if(!confirm("هل أنت متأكد من الحجز؟")) return;
+if(!confirm("تأكيد الحجز؟")) return;
 
-var msg=`📸 حجز جديد
+let addonsText = selectedAddons.length ? selectedAddons.join(" + ") : "لا يوجد إضافات";
+
+let msg = `📸 حجز جديد
 
 👤 ${name}
 📦 ${pack}
+➕ الإضافات: ${addonsText}
 📅 ${date}`;
 
-window.open("https://wa.me/201551927206?text="+encodeURIComponent(msg));
+window.open("https://wa.me/201551927206?text=" + encodeURIComponent(msg));
+
 }
 
 </script>
