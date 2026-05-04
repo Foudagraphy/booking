@@ -8,6 +8,9 @@
 
 <style>
 
+/* =======================
+   BASE
+======================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -15,127 +18,131 @@ body {
   color: white;
 }
 
-/* Overlay */
 .overlay {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.55);
   min-height: 100vh;
-  backdrop-filter: blur(3px);
 }
 
-/* Header */
+/* =======================
+   HEADER
+======================= */
 .header {
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 15px;
 }
 
 .header img {
-  width: 160px;
+  width: 130px;
 }
 
 .header h1 {
   color: #d4af37;
-  font-size: 28px;
+  font-size: 26px;
+  margin: 10px 0;
 }
 
 .header p {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.8;
 }
 
-/* Gallery */
+/* =======================
+   GALLERY
+======================= */
 .gallery {
   display: flex;
   gap: 10px;
-  padding: 20px;
+  padding: 15px;
   overflow-x: auto;
+  scroll-behavior: smooth;
 }
 
 .gallery img {
-  height: 180px;
-  border-radius: 10px;
-  transition: 0.3s;
+  height: 140px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* Packages */
+/* =======================
+   PACKAGES
+======================= */
 .packages {
   text-align: center;
-  padding: 20px;
+  padding: 15px;
 }
 
 h2 {
   color: #d4af37;
-  margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
 .package {
   background: #1a1a1a;
   border: 1px solid #d4af37;
-  margin: 15px auto;
-  padding: 20px;
-  border-radius: 10px;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 8px;
   max-width: 500px;
-
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s ease forwards;
+  transition: transform 0.2s ease;
 }
 
-.package:nth-child(1) { animation-delay: 0.1s; }
-.package:nth-child(2) { animation-delay: 0.2s; }
-.package:nth-child(3) { animation-delay: 0.3s; }
-.package:nth-child(4) { animation-delay: 0.4s; }
-.package:nth-child(5) { animation-delay: 0.5s; }
+.package:hover {
+  transform: translateY(-3px);
+}
 
 .package h3 {
   color: #d4af37;
+  margin-bottom: 5px;
 }
 
 .package p {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.9;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .price {
-  font-size: 22px;
-  margin-top: 10px;
+  font-size: 20px;
+  margin-top: 8px;
 }
 
-/* Reviews */
+/* =======================
+   REVIEWS
+======================= */
 .reviews {
-  padding: 30px;
+  padding: 20px;
   text-align: center;
 }
 
 .review {
   background: #111;
-  padding: 15px;
-  margin: 10px auto;
-  max-width: 400px;
-  border-radius: 10px;
+  padding: 12px;
+  margin: 8px auto;
+  max-width: 380px;
+  border-radius: 8px;
 }
 
-/* Booking */
+/* =======================
+   BOOKING
+======================= */
 .booking {
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 
 input, select {
   width: 90%;
-  max-width: 400px;
+  max-width: 380px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 8px auto;
   border-radius: 5px;
   border: none;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 button {
@@ -144,69 +151,56 @@ button {
   padding: 12px;
   border: none;
   width: 90%;
-  max-width: 420px;
-  font-size: 16px;
+  max-width: 400px;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
-button:hover {
-  transform: scale(1.05);
+button:active {
+  transform: scale(0.98);
 }
 
-/* Floating WhatsApp */
+/* =======================
+   FLOATING BUTTONS
+======================= */
 .whatsapp {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: #25D366;
   color: white;
-  padding: 15px;
+  padding: 14px;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 18px;
   text-decoration: none;
   z-index: 999;
 }
 
-/* Fixed Booking Button */
 .fixed-book {
   position: fixed;
-  bottom: 80px;
+  bottom: 75px;
   right: 20px;
   background: #d4af37;
   color: black;
-  padding: 12px 18px;
-  border-radius: 30px;
+  padding: 10px 16px;
+  border-radius: 25px;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   z-index: 999;
-  animation: pulse 2s infinite;
 }
 
-/* Animations */
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-
-/* Mobile */
+/* =======================
+   MOBILE
+======================= */
 @media (max-width: 768px) {
   .header img {
-    width: 120px;
+    width: 110px;
   }
 
   .gallery img {
-    height: 150px;
+    height: 120px;
   }
 }
 
@@ -218,71 +212,71 @@ button:hover {
 
 <div class="overlay">
 
-<!-- Header -->
+<!-- HEADER -->
 <div class="header">
   <img src="logo.png">
   <h1>Foudagarphy</h1>
   <p>We don’t just take photos, we capture memories</p>
 </div>
 
-<!-- Gallery -->
+<!-- GALLERY -->
 <div class="gallery">
   <img src="1.jpg">
   <img src="2.jpg">
   <img src="3.jpg">
 </div>
 
-<!-- Packages -->
+<!-- PACKAGES -->
 <div class="packages">
   <h2>الباكيدجات</h2>
 
   <div class="package">
     <h3>Package 1</h3>
-    <p>تصوير السيشن + تابلوه صغير + 10 كروت مطبوعة</p>
+    <p>تصوير السيشن + تابلوه + 10 كروت</p>
     <div class="price">3000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 2</h3>
-    <p>البوم 30×45 + تابلوه 40×30 + 15 كارت</p>
+    <p>البوم + تابلوه + كروت مطبوعة</p>
     <div class="price">4000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 3</h3>
-    <p>البوم 30×60 + تابلوه + 20 كارت</p>
+    <p>باقة متكاملة + ألبوم + طباعة</p>
     <div class="price">4500 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 4</h3>
-    <p>البوم 30×80 + تابلوه كبير + 25 كارت</p>
+    <p>باقة كبيرة + تصميمات + طباعة</p>
     <div class="price">5000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 5</h3>
-    <p>باقة كاملة VIP + ألبومات + برواز + 30 كارت</p>
+    <p>VIP كاملة + كل الإضافات</p>
     <div class="price">6000 LE</div>
   </div>
 
 </div>
 
-<!-- Reviews -->
+<!-- REVIEWS -->
 <div class="reviews">
   <h2>آراء العملاء</h2>
 
-  <div class="review">🔥 شغل ممتاز جدًا</div>
-  <div class="review">📸 صور احترافية جدًا</div>
-  <div class="review">💯 أنصح بيه بشدة</div>
+  <div class="review">🔥 شغل احترافي جدًا</div>
+  <div class="review">📸 صور بجودة عالية</div>
+  <div class="review">💯 تجربة ممتازة</div>
 </div>
 
-<!-- Booking -->
+<!-- BOOKING -->
 <div class="booking" id="booking">
   <h2>احجز الآن</h2>
 
   <input type="text" id="name" placeholder="اسمك">
-
+  
   <select id="package">
     <option>Package 1</option>
     <option>Package 2</option>
@@ -298,7 +292,7 @@ button:hover {
 
 </div>
 
-<!-- Buttons -->
+<!-- FLOATING BUTTONS -->
 <a class="whatsapp" href="https://wa.me/201551927206" target="_blank">💬</a>
 <a href="#booking" class="fixed-book">احجز الآن 📸</a>
 
