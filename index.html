@@ -8,128 +8,117 @@
 
 <style>
 
-/* =======================
-   BASE
-======================= */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: url("bg.jpg") no-repeat center center/cover;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(45deg, #000, #111);
   color: white;
 }
 
 .overlay {
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.7);
   min-height: 100vh;
 }
 
-/* =======================
-   HEADER
-======================= */
+/* ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER */
 .header {
   text-align: center;
   padding: 30px 15px;
 }
 
-.header img {
-  width: 130px;
-}
+.header img { width: 120px; }
 
-.header h1 {
-  color: #d4af37;
-  font-size: 26px;
-  margin: 10px 0;
-}
+.header h1 { color: #ffd700; }
 
-.header p {
-  font-size: 13px;
-  opacity: 0.8;
-}
-
-/* =======================
-   GALLERY
-======================= */
+/* GALLERY */
 .gallery {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   padding: 15px;
   overflow-x: auto;
-  scroll-behavior: smooth;
 }
 
 .gallery img {
-  height: 140px;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .gallery img:hover {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
-/* =======================
-   PACKAGES
-======================= */
+/* FULLSCREEN */
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.fullscreen img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* PACKAGES */
 .packages {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
 }
 
-h2 {
-  color: #d4af37;
-  font-size: 22px;
-  margin-bottom: 15px;
-}
+h2 { color: #ffd700; }
 
 .package {
-  background: #1a1a1a;
-  border: 1px solid #d4af37;
-  margin: 10px auto;
-  padding: 15px;
-  border-radius: 8px;
+  background: #111;
+  border: 1px solid #ffd700;
+  margin: 12px auto;
+  padding: 18px;
+  border-radius: 10px;
   max-width: 500px;
-  transition: transform 0.2s ease;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .package:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 
-.package h3 {
-  color: #d4af37;
-  margin-bottom: 5px;
-}
-
-.package p {
-  font-size: 13px;
-  opacity: 0.9;
-  line-height: 1.5;
+.package.active {
+  border: 2px solid #ffd700;
+  background: #1f1a00;
+  box-shadow: 0 0 15px rgba(255,215,0,0.5);
+  transform: scale(1.02);
 }
 
 .price {
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-/* =======================
-   REVIEWS
-======================= */
-.reviews {
-  padding: 20px;
-  text-align: center;
+.stars {
+  color: gold;
 }
 
-.review {
-  background: #111;
-  padding: 12px;
-  margin: 8px auto;
-  max-width: 380px;
-  border-radius: 8px;
-}
-
-/* =======================
-   BOOKING
-======================= */
+/* BOOKING */
 .booking {
   text-align: center;
   padding: 20px;
@@ -137,75 +126,54 @@ h2 {
 
 input, select {
   width: 90%;
-  max-width: 380px;
-  padding: 10px;
-  margin: 8px auto;
-  border-radius: 5px;
+  max-width: 400px;
+  padding: 12px;
+  margin: 10px auto;
+  border-radius: 6px;
   border: none;
   display: block;
 }
 
 button {
-  background: #d4af37;
+  background: #ffd700;
   color: black;
   padding: 12px;
   border: none;
   width: 90%;
   max-width: 400px;
-  font-size: 15px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-button:active {
-  transform: scale(0.98);
-}
-
-/* =======================
-   FLOATING BUTTONS
-======================= */
-.whatsapp {
+/* FLOATING */
+.whatsapp, .call {
   position: fixed;
-  bottom: 20px;
   right: 20px;
-  background: #25D366;
-  color: white;
-  padding: 14px;
   border-radius: 50%;
-  font-size: 18px;
+  padding: 14px;
+  color: white;
   text-decoration: none;
-  z-index: 999;
 }
+
+.whatsapp { bottom: 20px; background: #25D366; }
+.call { bottom: 80px; background: #007bff; }
 
 .fixed-book {
   position: fixed;
-  bottom: 75px;
+  bottom: 140px;
   right: 20px;
-  background: #d4af37;
+  background: #ffd700;
   color: black;
   padding: 10px 16px;
   border-radius: 25px;
-  font-weight: bold;
-  text-decoration: none;
-  z-index: 999;
 }
 
-/* =======================
-   MOBILE
-======================= */
-@media (max-width: 768px) {
-  .header img {
-    width: 110px;
-  }
-
-  .gallery img {
-    height: 120px;
-  }
+/* MOBILE */
+@media (max-width:768px){
+  .gallery img { height: 120px; }
 }
 
 </style>
-
 </head>
 
 <body>
@@ -213,113 +181,160 @@ button:active {
 <div class="overlay">
 
 <!-- HEADER -->
-<div class="header">
+<div class="header fade">
   <img src="logo.png">
   <h1>Foudagarphy</h1>
-  <p>We don’t just take photos, we capture memories</p>
+  <p>We capture memories</p>
 </div>
 
 <!-- GALLERY -->
-<div class="gallery">
-  <img src="1.jpg">
-  <img src="2.jpg">
-  <img src="3.jpg">
+<div class="gallery fade">
+  <img src="1.jpg" onclick="openImage(this.src)">
+  <img src="2.jpg" onclick="openImage(this.src)">
+  <img src="3.jpg" onclick="openImage(this.src)">
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="viewer" onclick="closeImage()">
+  <img id="viewerImg">
 </div>
 
 <!-- PACKAGES -->
-<div class="packages">
-  <h2>الباكيدجات</h2>
+<div class="packages fade">
 
-  <div class="package">
-    <h3>Package 1</h3>
-    <p>تصوير السيشن + تابلوه + 10 كروت</p>
-    <div class="price">3000 LE</div>
-  </div>
+<h2>الباكيدجات</h2>
 
-  <div class="package">
-    <h3>Package 2</h3>
-    <p>البوم + تابلوه + كروت مطبوعة</p>
-    <div class="price">4000 LE</div>
-  </div>
+<div class="package" onclick="selectPackage('Package 1', this)">
+<h3>🌟 Package 1</h3>
+<p>( session + tableau + 10 cards printed )</p>
+<p>( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</p>
+<div class="price">3000 LE</div>
+<div class="stars">★★★★★</div>
+</div>
 
-  <div class="package">
-    <h3>Package 3</h3>
-    <p>باقة متكاملة + ألبوم + طباعة</p>
-    <div class="price">4500 LE</div>
-  </div>
+<div class="package" onclick="selectPackage('Package 2', this)">
+<h3>🌟 Package 2</h3>
+<p>( session + album 30×45 + tableau 40×30 + 15 cards )</p>
+<p>( تصوير السيشن + البوم ٣٠×٤٥ + تابلوه ٤٠×٣٠ + ١٥ كارت )</p>
+<div class="price">4000 LE</div>
+<div class="stars">★★★★★</div>
+</div>
 
-  <div class="package">
-    <h3>Package 4</h3>
-    <p>باقة كبيرة + تصميمات + طباعة</p>
-    <div class="price">5000 LE</div>
-  </div>
+<div class="package" onclick="selectPackage('Package 3', this)">
+<h3>🌟 Package 3</h3>
+<p>( session + album 30×60 + tableau 50×40 + 20 cards )</p>
+<p>( تصوير السيشن + البوم ٣٠×٦٠ + تابلوه ٥٠×٤٠ + ٢٠ كارت )</p>
+<div class="price">4500 LE</div>
+<div class="stars">★★★★★</div>
+</div>
 
-  <div class="package">
-    <h3>Package 5</h3>
-    <p>VIP كاملة + كل الإضافات</p>
-    <div class="price">6000 LE</div>
-  </div>
+<div class="package" onclick="selectPackage('Package 4', this)">
+<h3>🌟 Package 4</h3>
+<p>( session + album 30×80 + tableau 50×60 + 25 cards )</p>
+<p>( تصوير السيشن + البوم ٣٠×٨٠ + تابلوه ٥٠×٦٠ + ٢٥ كارت )</p>
+<div class="price">5000 LE</div>
+<div class="stars">★★★★★</div>
+</div>
+
+<div class="package" onclick="selectPackage('Package 5', this)">
+<h3>🔥 Package 5 VIP</h3>
+<p>( session + album window + mini album + frames + 2 tableau + 30 cards )</p>
+<p>( تصوير السيشن + البوم شباك + البوم صغير + برواز + ٢ تابلوه + ٣٠ كارت )</p>
+<div class="price">6000 LE</div>
+<div class="stars">★★★★★</div>
+</div>
 
 </div>
 
-<!-- REVIEWS -->
-<div class="reviews">
-  <h2>آراء العملاء</h2>
+<!-- ADDONS -->
+<div class="packages fade">
+<h2>الإضافات</h2>
 
-  <div class="review">🔥 شغل احترافي جدًا</div>
-  <div class="review">📸 صور بجودة عالية</div>
-  <div class="review">💯 تجربة ممتازة</div>
+<div class="package"><p>🎉 تصوير قاعة / بارتي</p><div class="price">1500 LE</div></div>
+<div class="package"><p>🏠 تصوير في البيت</p><div class="price">1200 LE</div></div>
+<div class="package"><p>🎬 فيديو برومو سيشن</p><div class="price">3500 LE</div></div>
+<div class="package"><p>🎬 فيديو سيشن + قاعة</p><div class="price">5000 LE</div></div>
+
+</div>
+
+<!-- NOTES -->
+<div class="packages fade">
+<h2>ملاحظات</h2>
+
+<div class="package"><p>🎁 خصم 10% للقطاع الطبي</p></div>
+<div class="package"><p>⏳ تسليم القاعة خلال 10 أيام</p></div>
+<div class="package"><p>📸 تسليم السيشن خلال 20 يوم</p></div>
+
 </div>
 
 <!-- BOOKING -->
-<div class="booking" id="booking">
-  <h2>احجز الآن</h2>
+<div class="booking fade" id="booking">
+<h2>احجز الآن</h2>
 
-  <input type="text" id="name" placeholder="اسمك">
-  
-  <select id="package">
-    <option>Package 1</option>
-    <option>Package 2</option>
-    <option>Package 3</option>
-    <option>Package 4</option>
-    <option>Package 5</option>
-  </select>
+<input type="text" id="name" placeholder="اسمك">
 
-  <input type="date" id="date">
+<select id="package">
+<option>Package 1</option>
+<option>Package 2</option>
+<option>Package 3</option>
+<option>Package 4</option>
+<option>Package 5</option>
+</select>
 
-  <button onclick="sendToWhatsApp()">احجز عبر واتساب</button>
+<input type="date" id="date">
+
+<button onclick="sendToWhatsApp()">احجز عبر واتساب</button>
 </div>
 
 </div>
 
-<!-- FLOATING BUTTONS -->
-<a class="whatsapp" href="https://wa.me/201551927206" target="_blank">💬</a>
-<a href="#booking" class="fixed-book">احجز الآن 📸</a>
+<!-- FLOATING -->
+<a class="whatsapp" href="https://wa.me/201551927206">💬</a>
+<a class="call" href="tel:201551927206">📞</a>
+<a href="#booking" class="fixed-book">احجز</a>
 
 <script>
 
-function sendToWhatsApp() {
-  var name = document.getElementById("name").value;
-  var pack = document.getElementById("package").value;
-  var date = document.getElementById("date").value;
+function openImage(src){
+document.getElementById("viewer").style.display="flex";
+document.getElementById("viewerImg").src=src;
+}
 
-  if (!name || !date) {
-    alert("من فضلك أكمل البيانات 📌");
-    return;
-  }
+function closeImage(){
+document.getElementById("viewer").style.display="none";
+}
 
-  var message =
-`📸 حجز جديد - Foudagarphy
+function selectPackage(name, el){
+document.getElementById("package").value=name;
 
-👤 الاسم: ${name}
-📦 الباقة: ${pack}
-📅 التاريخ: ${date}
+document.querySelectorAll(".package").forEach(p=>{
+p.classList.remove("active");
+});
 
-برجاء تأكيد الحجز 🙏`;
+el.classList.add("active");
 
-  var url = "https://wa.me/201551927206?text=" + encodeURIComponent(message);
+document.getElementById("booking").scrollIntoView({behavior:"smooth"});
+}
 
-  window.open(url, "_blank");
+function sendToWhatsApp(){
+var name=document.getElementById("name").value;
+var pack=document.getElementById("package").value;
+var date=document.getElementById("date").value;
+
+if(!name||!date){
+alert("من فضلك أكمل البيانات");
+return;
+}
+
+if(!confirm("هل أنت متأكد من الحجز؟")) return;
+
+var msg=`📸 حجز جديد
+
+👤 ${name}
+📦 ${pack}
+📅 ${date}`;
+
+window.open("https://wa.me/201551927206?text="+encodeURIComponent(msg));
 }
 
 </script>
