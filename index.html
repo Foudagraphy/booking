@@ -8,37 +8,61 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0f0f0f;
+  background: url("bg.jpg") no-repeat center center/cover;
   color: white;
 }
 
-/* الهيدر */
+.overlay {
+  background: rgba(0,0,0,0.75);
+  min-height: 100vh;
+}
+
+/* Header */
 .header {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px;
 }
 
 .header img {
-  width: 200px;
+  width: 180px;
 }
 
 .header h1 {
   color: #d4af37;
-  margin-top: 10px;
 }
 
-/* الباكيدجات */
+/* Gallery */
+.gallery {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.gallery img {
+  height: 200px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Packages */
 .packages {
+  text-align: center;
   padding: 20px;
 }
 
 .package {
   background: #1a1a1a;
   border: 1px solid #d4af37;
-  border-radius: 10px;
   margin: 15px auto;
   padding: 20px;
+  border-radius: 10px;
   max-width: 500px;
+  animation: fadeUp 1s ease;
 }
 
 .package h3 {
@@ -47,10 +71,23 @@ body {
 
 .price {
   font-size: 22px;
-  margin-top: 10px;
 }
 
-/* فورم */
+/* Reviews */
+.reviews {
+  padding: 30px;
+  text-align: center;
+}
+
+.review {
+  background: #111;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+/* Booking */
 .booking {
   text-align: center;
   padding: 30px;
@@ -73,6 +110,36 @@ button {
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* WhatsApp Button */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
 
@@ -80,12 +147,25 @@ button {
 
 <body>
 
+<div class="overlay">
+
+<!-- Header -->
 <div class="header">
   <img src="logo.png">
-  <h1>Foudagarphy Packages 2026</h1>
+  <h1>Foudagarphy</h1>
+  <p>We don’t just take photos, we capture memories</p>
 </div>
 
+<!-- Gallery -->
+<div class="gallery">
+  <img src="1.jpg">
+  <img src="2.jpg">
+  <img src="3.jpg">
+</div>
+
+<!-- Packages -->
 <div class="packages">
+  <h2>الباكيدجات</h2>
 
   <div class="package">
     <h3>Package 1</h3>
@@ -95,30 +175,40 @@ button {
 
   <div class="package">
     <h3>Package 2</h3>
-    <p>Session + Album 30x45 + Tableau + 15 Cards</p>
+    <p>Session + Album + Tableau + 15 Cards</p>
     <div class="price">4000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 3</h3>
-    <p>Session + Album 30x60 + Tableau + 15 Cards</p>
+    <p>Session + Album + Tableau + 15 Cards</p>
     <div class="price">4500 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 4</h3>
-    <p>Session + Album 30x80 + Tableau + 20 Cards</p>
+    <p>Session + Album + Tableau + 20 Cards</p>
     <div class="price">5000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 5</h3>
-    <p>Full Package + Mini Album + Frames + 30 Cards</p>
+    <p>Full Package + Frames + 30 Cards</p>
     <div class="price">6000 LE</div>
   </div>
 
 </div>
 
+<!-- Reviews -->
+<div class="reviews">
+  <h2>آراء العملاء</h2>
+
+  <div class="review">🔥 شغل ممتاز جدًا وتعامل راقي</div>
+  <div class="review">📸 الصور طلعت أحلى من المتوقع</div>
+  <div class="review">💯 أنصح بيه لأي عريس وعروسة</div>
+</div>
+
+<!-- Booking -->
 <div class="booking">
   <h2>احجز الآن</h2>
 
@@ -137,6 +227,11 @@ button {
   <button onclick="sendToWhatsApp()">احجز عبر واتساب</button>
 </div>
 
+</div>
+
+<!-- WhatsApp Floating Button -->
+<a class="whatsapp" href="https://wa.me/201551927206" target="_blank">💬</a>
+
 <script>
 function sendToWhatsApp() {
   var name = document.getElementById("name").value;
@@ -150,8 +245,7 @@ function sendToWhatsApp() {
   "الباقة: " + pack + "\n" +
   "التاريخ: " + date;
 
-  var phone = "201551927206";
-  var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  var url = "https://wa.me/201551927206?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
 }
