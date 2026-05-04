@@ -97,7 +97,7 @@ function sendToWhatsApp() {
   "التاريخ: " + date;
 
   var phone = "201551927206"; // حط رقمك هنا
-  var url = "https://wa.me/" + 201551927206 + "?text=" + encodeURIComponent(message);
+  var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
 }
