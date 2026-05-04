@@ -33,7 +33,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* header */
+/* HEADER */
 .header {
   text-align: center;
   padding: 30px 15px;
@@ -42,7 +42,44 @@ body {
 .header img { width: 120px; }
 .header h1 { color: #ffd700; }
 
-/* packages */
+/* HERO GALLERY */
+.gallery-hero{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px 15px;
+}
+
+.gallery-hero img{
+  height:160px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+  flex-shrink:0;
+}
+
+.gallery-hero img:hover{
+  transform:scale(1.05);
+  filter:brightness(1.1);
+}
+
+/* FULLSCREEN IMAGE */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.fullscreen img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* PACKAGES */
 .packages {
   text-align: center;
   padding: 20px;
@@ -69,13 +106,31 @@ body {
   box-shadow: 0 0 15px rgba(255,215,0,0.5);
 }
 
-/* addons highlight فقط */
+/* ADDONS */
 .package.addon.active {
   border: 2px solid #25D366;
   background: #0f1a12;
 }
 
-/* booking */
+/* TEXT */
+.title {
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.line {
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.price {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* BOOKING */
 .booking {
   text-align: center;
   padding: 20px;
@@ -103,13 +158,7 @@ button {
   cursor: pointer;
 }
 
-#totalPrice{
-  color:#25D366;
-  font-size:22px;
-  font-weight:bold;
-}
-
-/* floating */
+/* FLOATING */
 .whatsapp, .call {
   position: fixed;
   right: 20px;
@@ -123,6 +172,12 @@ button {
 .whatsapp { bottom: 20px; background: #25D366; }
 .call { bottom: 80px; background: #007bff; }
 
+#totalPrice{
+  color:#25D366;
+  font-size:22px;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
@@ -130,54 +185,74 @@ button {
 
 <div class="overlay">
 
+<!-- HEADER -->
 <div class="header fade">
   <img src="logo.png">
   <h1>Foudagarphy</h1>
 </div>
 
-<!-- ================= PACKAGES (UNCHANGED) ================= -->
+<!-- HERO IMAGES -->
+<div class="packages fade">
+
+<h2>Portfolio</h2>
+
+<div class="gallery-hero">
+  <img src="1.jpg" onclick="openImage(this.src)">
+  <img src="2.jpg" onclick="openImage(this.src)">
+  <img src="3.jpg" onclick="openImage(this.src)">
+  <img src="4.jpg" onclick="openImage(this.src)">
+</div>
+
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="viewer" onclick="closeImage()">
+  <img id="viewerImg">
+</div>
+
+<!-- PACKAGES -->
 <div class="packages fade">
 
 <h2>الباكيدجات</h2>
 
 <div class="package" onclick="selectPackage('Package 1', this)">
-<div>🌟 Package 1</div>
-<div>( session + tableau + 10 cards printed )</div>
-<div>( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</div>
-<div>💰Price 3000 LE</div>
+<div class="title">🌟 Package 1</div>
+<div class="line">( session + tableau + 10 cards printed )</div>
+<div class="line">( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</div>
+<div class="price">💰 3000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 2', this)">
-<div>🌟 Package 2</div>
-<div>( session + album 30×45 cm + tableau 30×40 + 15 cards printed )</div>
-<div>( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع)</div>
-<div>💰Price 4000 LE</div>
+<div class="title">🌟 Package 2</div>
+<div class="line">( session + album 30×45 cm + tableau 30×40 + 15 cards printed )</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع)</div>
+<div class="price">💰 4000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 3', this)">
-<div>🌟 Package 3</div>
-<div>( session + album 30×60 cm + tableau 50×40 + 15 printed cards )</div>
-<div>( تصوير السيشن + البوم ٣٠ × ٦٠ + تابلوه ٥٠ × ٤٠ + ٢٠ كارت طباعه )</div>
-<div>💰Price 4500 LE</div>
+<div class="title">🌟 Package 3</div>
+<div class="line">( session + album 30×60 cm + tableau 50×40 + 15 printed cards )</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٦٠ + تابلوه ٥٠ × ٤٠ + ٢٠ كارت طباعه )</div>
+<div class="price">💰 4500 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 4', this)">
-<div>🌟 Package 4</div>
-<div>( session + album 30×80 cm + tableau 50x60 + 20 printed cards )</div>
-<div>( تصوير السيشن + البوم ٣٠ × ٨٠ + تابلوه ٥٠ × ٦٠ + ٢٥ كارت طباعه )</div>
-<div>💰Price 5000 LE</div>
+<div class="title">🌟 Package 4</div>
+<div class="line">( session + album 30×80 cm + tableau 50x60 + 20 printed cards )</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ + تابلوه ٥٠ × ٦٠ + ٢٥ كارت طباعه )</div>
+<div class="price">💰 5000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 5', this)">
-<div>🌟 Package 5</div>
-<div>( session + album 30×80 cm ( window ) + mini album + Glass frame set ( 2+1 ) + tableau 50×60 + tableau 50×40 + 30 printed cards)</div>
-<div>( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج ( ٢ + ١ ) + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة)</div>
-<div>💰Price 6000 LE</div>
+<div class="title">🌟 Package 5</div>
+<div class="line">( session + album 30×80 cm ( window ) + mini album + Glass frame set ( 2+1 ) + tableau 50×60 + tableau 50×40 + 30 printed cards)</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج ( ٢ + ١ ) + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة)</div>
+<div class="price">💰 6000 LE</div>
 </div>
 
 </div>
 
-<!-- ================= ADDONS (UNCHANGED) ================= -->
+<!-- ADDONS -->
 <div class="packages fade">
 
 <h2>اضافات مع الباكدجات</h2>
@@ -287,6 +362,15 @@ selectedAddons.forEach(a=> total += addonPrices[a] || 0);
 document.getElementById("totalPrice").innerText = total;
 }
 
+function openImage(src){
+document.getElementById("viewer").style.display="flex";
+document.getElementById("viewerImg").src=src;
+}
+
+function closeImage(){
+document.getElementById("viewer").style.display="none";
+}
+
 function send(){
 
 let name = document.getElementById("name").value;
@@ -302,8 +386,7 @@ selectedAddons.forEach(a=> total += addonPrices[a] || 0);
 
 if(!confirm("تأكيد الحجز بمبلغ " + total + " LE؟")) return;
 
-let msg =
-`📸 حجز جديد\n\n👤 ${name}\n📦 ${selectedPackage}\n💰 ${total} LE\n📅 ${date}`;
+let msg = `📸 حجز جديد\n\n👤 ${name}\n📦 ${selectedPackage}\n💰 ${total} LE\n📅 ${date}`;
 
 window.open("https://wa.me/201551927206?text="+encodeURIComponent(msg));
 }
