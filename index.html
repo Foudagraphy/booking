@@ -64,10 +64,7 @@ body {
 /* FULLSCREEN */
 .fullscreen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.9);
   display: none;
   justify-content: center;
@@ -101,10 +98,17 @@ body {
   transform: translateY(-5px);
 }
 
+/* highlight */
 .package.active {
   border: 2px solid #ffd700;
   background: #1f1a00;
   box-shadow: 0 0 15px rgba(255,215,0,0.5);
+}
+
+/* ADDONS */
+.package.addon.active {
+  border: 2px solid #25D366;
+  background: #0f1a12;
 }
 
 /* TEXT */
@@ -125,6 +129,13 @@ body {
   margin-top: 10px;
   font-size: 18px;
   color: #fff;
+}
+
+/* TOTAL */
+#totalPrice{
+  color:#25D366;
+  font-size:22px;
+  font-weight:bold;
 }
 
 /* BOOKING */
@@ -167,21 +178,6 @@ button {
 .whatsapp { bottom: 20px; background: #25D366; }
 .call { bottom: 80px; background: #007bff; }
 
-.fixed-book {
-  position: fixed;
-  bottom: 140px;
-  right: 20px;
-  background: #ffd700;
-  color: black;
-  padding: 10px 16px;
-  border-radius: 25px;
-}
-
-/* MOBILE */
-@media (max-width:768px){
-  .gallery img { height: 120px; }
-}
-
 </style>
 </head>
 
@@ -206,7 +202,7 @@ button {
   <img id="viewerImg">
 </div>
 
-<!-- PACKAGES -->
+<!-- PACKAGES (نفس كلامك 100%) -->
 <div class="packages fade">
 
 <h2>الباكيدجات</h2>
@@ -221,7 +217,7 @@ button {
 <div class="package" onclick="selectPackage('Package 2', this)">
 <div class="title">🌟 Package 2</div>
 <div class="line">( session + album 30×45 cm + tableau 30×40 + 15 cards printed )</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع )</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع)</div>
 <div class="price">💰 4000 LE</div>
 </div>
 
@@ -242,72 +238,47 @@ button {
 <div class="package" onclick="selectPackage('Package 5', this)">
 <div class="title">🌟 Package 5</div>
 <div class="line">( session + album 30×80 cm ( window ) + mini album + Glass frame set ( 2+1 ) + tableau 50×60 + tableau 50×40 + 30 printed cards)</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج ( ٢ + ١ ) + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة )</div>
+<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج ( ٢ + ١ ) + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة)</div>
 <div class="price">💰 6000 LE</div>
 </div>
 
 </div>
 
-<!-- ADDONS -->
+<!-- ADDONS (نفس كلامك 100%) -->
 <div class="packages fade">
 
-<h2>الإضافات</h2>
+<h2>اضافات مع الباكدجات</h2>
 
 <div class="package addon" onclick="toggleAddon(this,'تصوير قاعة / بارتي')">
-<div class="line"># تصوير قاعة / بارتي - 1500 جنيه</div>
+<div class="line"># تصوير قاعة / بارتي 1500 جنيه</div>
 </div>
 
-<div class="package addon" onclick="toggleAddon(this,'تصوير اي مناسبة في البيت')">
-<div class="line"># تصوير اي مناسبة في البيت - 1200 جنيه</div>
+<div class="package addon" onclick="toggleAddon(this,'تصوير اي مناسبة ف البيت')">
+<div class="line"># تصوير اي مناسبة ف البيت 1200 جنيه</div>
 </div>
 
 <div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن فقط')">
-<div class="line"># فيديو برومو سيشن فقط - 3500 جنيه</div>
+<div class="line"># فيديو برومو سيشن فقط 3500 جنيه</div>
 </div>
 
 <div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن + قاعة')">
-<div class="line"># فيديو برومو سيشن + قاعة - 5000 جنيه</div>
-</div>
-
-</div>
-
-<!-- NOTES -->
-<div class="packages fade">
-
-<h2>ملاحظات</h2>
-
-<div class="package">
-<div class="line">🌟 خصم 10% لأي عريس أو عروسة من القطاع الطبي</div>
-</div>
-
-<div class="package">
-<div class="line">⏳ يتم تسليم صور القاعة خلال 5 ايام</div>
-</div>
-
-<div class="package">
-<div class="line">📸 يتم تسليم صور السيشن خلال 15 يوم</div>
+<div class="line"># فيديو برومو سيشن + قاعة 5000 جنيه</div>
 </div>
 
 </div>
 
 <!-- BOOKING -->
-<div class="booking fade" id="booking">
+<div class="booking fade">
 
 <h2>احجز الآن</h2>
 
 <input type="text" id="name" placeholder="اسمك">
 
-<select id="package">
-<option>Package 1</option>
-<option>Package 2</option>
-<option>Package 3</option>
-<option>Package 4</option>
-<option>Package 5</option>
-</select>
+<select id="package"></select>
 
 <input type="date" id="date">
 
-<h3 style="color:#ffd700">الإجمالي: <span id="totalPrice">0</span> LE</h3>
+<h3>الإجمالي: <span id="totalPrice">0</span> LE</h3>
 
 <button onclick="sendToWhatsApp()">احجز عبر واتساب</button>
 
@@ -315,7 +286,6 @@ button {
 
 </div>
 
-<!-- FLOATING -->
 <a class="whatsapp" href="https://wa.me/201551927206">💬</a>
 <a class="call" href="tel:201551927206">📞</a>
 
@@ -326,27 +296,23 @@ let selectedPrice = 0;
 let selectedAddons = [];
 
 const packagesPrice = {
-  "Package 1": 3000,
-  "Package 2": 4000,
-  "Package 3": 4500,
-  "Package 4": 5000,
-  "Package 5": 6000
+"Package 1":3000,
+"Package 2":4000,
+"Package 3":4500,
+"Package 4":5000,
+"Package 5":6000
 };
 
 const addonsPrice = {
-  "تصوير قاعة / بارتي": 1500,
-  "تصوير اي مناسبة في البيت": 1200,
-  "فيديو برومو سيشن فقط": 3500,
-  "فيديو برومو سيشن + قاعة": 5000
+"تصوير قاعة / بارتي":1500,
+"تصوير اي مناسبة ف البيت":1200,
+"فيديو برومو سيشن فقط":3500,
+"فيديو برومو سيشن + قاعة":5000
 };
 
 function updateTotal(){
 let total = selectedPrice;
-
-selectedAddons.forEach(a=>{
-  total += addonsPrice[a] || 0;
-});
-
+selectedAddons.forEach(a=> total += addonsPrice[a] || 0);
 document.getElementById("totalPrice").innerText = total;
 }
 
@@ -355,16 +321,14 @@ function selectPackage(name, el){
 selectedPackage = name;
 selectedPrice = packagesPrice[name];
 
-document.getElementById("package").value = name;
-
 document.querySelectorAll(".package").forEach(p=>{
-p.classList.remove("active");
+if(!p.classList.contains("addon")) p.classList.remove("active");
 });
 
 el.classList.add("active");
 
 updateTotal();
-document.getElementById("booking").scrollIntoView({behavior:"smooth"});
+document.getElementById("package").value = name;
 }
 
 function toggleAddon(el, name){
@@ -380,46 +344,22 @@ selectedAddons.push(name);
 updateTotal();
 }
 
-function openImage(src){
-document.getElementById("viewer").style.display="flex";
-document.getElementById("viewerImg").src=src;
-}
-
-function closeImage(){
-document.getElementById("viewer").style.display="none";
-}
-
 function sendToWhatsApp(){
 
 let name = document.getElementById("name").value;
 let date = document.getElementById("date").value;
 
-if(!name || !date){
+if(!name || !date || !selectedPackage){
 alert("اكمل البيانات");
 return;
 }
 
-if(!selectedPackage){
-alert("اختار باكدج");
-return;
-}
-
-if(!confirm("تأكيد الحجز؟")) return;
-
-let addonsText = selectedAddons.length ? selectedAddons.join(" + ") : "لا يوجد";
-
 let total = selectedPrice;
-selectedAddons.forEach(a=>{
-  total += addonsPrice[a] || 0;
-});
+selectedAddons.forEach(a=> total += addonsPrice[a] || 0);
 
-let msg = `📸 حجز جديد
+if(!confirm(`تأكيد الحجز بمبلغ ${total} LE؟`)) return;
 
-👤 ${name}
-📦 ${selectedPackage}
-➕ ${addonsText}
-💰 الإجمالي: ${total} LE
-📅 ${date}`;
+let msg = `📸 حجز جديد\n\n👤 ${name}\n📦 ${selectedPackage}\n💰 ${total} LE\n📅 ${date}`;
 
 window.open("https://wa.me/201551927206?text="+encodeURIComponent(msg));
 }
