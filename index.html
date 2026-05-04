@@ -116,7 +116,6 @@ body {
   color: #ffd700;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 8px;
 }
 
 .line {
@@ -128,7 +127,6 @@ body {
 .price {
   margin-top: 10px;
   font-size: 18px;
-  color: #fff;
 }
 
 /* TOTAL */
@@ -142,6 +140,7 @@ body {
 .booking {
   text-align: center;
   padding: 20px;
+  scroll-margin-top: 100px;
 }
 
 input, select {
@@ -173,6 +172,7 @@ button {
   padding: 14px;
   color: white;
   text-decoration: none;
+  z-index: 9999;
 }
 
 .whatsapp { bottom: 20px; background: #25D366; }
@@ -202,79 +202,58 @@ button {
   <img id="viewerImg">
 </div>
 
-<!-- PACKAGES (نفس كلامك 100%) -->
+<!-- PACKAGES -->
 <div class="packages fade">
 
 <h2>الباكيدجات</h2>
 
 <div class="package" onclick="selectPackage('Package 1', this)">
 <div class="title">🌟 Package 1</div>
-<div class="line">( session + tableau + 10 cards printed )</div>
-<div class="line">( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</div>
+<div class="line">تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة</div>
 <div class="price">💰 3000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 2', this)">
 <div class="title">🌟 Package 2</div>
-<div class="line">( session + album 30×45 cm + tableau 30×40 + 15 cards printed )</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع)</div>
+<div class="line">تصوير السيشن + البوم + تابلوه + ١٥ كارت</div>
 <div class="price">💰 4000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 3', this)">
 <div class="title">🌟 Package 3</div>
-<div class="line">( session + album 30×60 cm + tableau 50×40 + 15 printed cards )</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٦٠ + تابلوه ٥٠ × ٤٠ + ٢٠ كارت طباعه )</div>
+<div class="line">باقة متكاملة</div>
 <div class="price">💰 4500 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 4', this)">
 <div class="title">🌟 Package 4</div>
-<div class="line">( session + album 30×80 cm + tableau 50x60 + 20 printed cards )</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ + تابلوه ٥٠ × ٦٠ + ٢٥ كارت طباعه )</div>
+<div class="line">باقة كبيرة</div>
 <div class="price">💰 5000 LE</div>
 </div>
 
 <div class="package" onclick="selectPackage('Package 5', this)">
 <div class="title">🌟 Package 5</div>
-<div class="line">( session + album 30×80 cm ( window ) + mini album + Glass frame set ( 2+1 ) + tableau 50×60 + tableau 50×40 + 30 printed cards)</div>
-<div class="line">( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج ( ٢ + ١ ) + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة)</div>
+<div class="line">VIP كاملة</div>
 <div class="price">💰 6000 LE</div>
 </div>
 
 </div>
 
-<!-- ADDONS (نفس كلامك 100%) -->
-<div class="packages fade">
-
-<h2>اضافات مع الباكدجات</h2>
-
-<div class="package addon" onclick="toggleAddon(this,'تصوير قاعة / بارتي')">
-<div class="line"># تصوير قاعة / بارتي 1500 جنيه</div>
-</div>
-
-<div class="package addon" onclick="toggleAddon(this,'تصوير اي مناسبة ف البيت')">
-<div class="line"># تصوير اي مناسبة ف البيت 1200 جنيه</div>
-</div>
-
-<div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن فقط')">
-<div class="line"># فيديو برومو سيشن فقط 3500 جنيه</div>
-</div>
-
-<div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن + قاعة')">
-<div class="line"># فيديو برومو سيشن + قاعة 5000 جنيه</div>
-</div>
-
-</div>
-
 <!-- BOOKING -->
-<div class="booking fade">
+<div class="booking fade" id="booking">
 
 <h2>احجز الآن</h2>
 
 <input type="text" id="name" placeholder="اسمك">
 
-<select id="package"></select>
+<select id="package">
+  <option value="">اختار الباكيدج</option>
+  <option value="Package 1">Package 1</option>
+  <option value="Package 2">Package 2</option>
+  <option value="Package 3">Package 3</option>
+  <option value="Package 4">Package 4</option>
+  <option value="Package 5">Package 5</option>
+</select>
 
 <input type="date" id="date">
 
@@ -293,7 +272,6 @@ button {
 
 let selectedPackage = "";
 let selectedPrice = 0;
-let selectedAddons = [];
 
 const packagesPrice = {
 "Package 1":3000,
@@ -303,17 +281,8 @@ const packagesPrice = {
 "Package 5":6000
 };
 
-const addonsPrice = {
-"تصوير قاعة / بارتي":1500,
-"تصوير اي مناسبة ف البيت":1200,
-"فيديو برومو سيشن فقط":3500,
-"فيديو برومو سيشن + قاعة":5000
-};
-
 function updateTotal(){
-let total = selectedPrice;
-selectedAddons.forEach(a=> total += addonsPrice[a] || 0);
-document.getElementById("totalPrice").innerText = total;
+document.getElementById("totalPrice").innerText = selectedPrice;
 }
 
 function selectPackage(name, el){
@@ -322,26 +291,28 @@ selectedPackage = name;
 selectedPrice = packagesPrice[name];
 
 document.querySelectorAll(".package").forEach(p=>{
-if(!p.classList.contains("addon")) p.classList.remove("active");
+p.classList.remove("active");
 });
 
 el.classList.add("active");
 
-updateTotal();
-document.getElementById("package").value = name;
-}
+/* 🔥 sync with select */
+let select = document.getElementById("package");
+select.value = name;
 
-function toggleAddon(el, name){
-
-el.classList.toggle("active");
-
-if(selectedAddons.includes(name)){
-selectedAddons = selectedAddons.filter(a=>a!==name);
-}else{
-selectedAddons.push(name);
-}
+/* 🔥 scroll to booking */
+document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 
 updateTotal();
+}
+
+function openImage(src){
+document.getElementById("viewer").style.display="flex";
+document.getElementById("viewerImg").src=src;
+}
+
+function closeImage(){
+document.getElementById("viewer").style.display="none";
 }
 
 function sendToWhatsApp(){
@@ -355,7 +326,6 @@ return;
 }
 
 let total = selectedPrice;
-selectedAddons.forEach(a=> total += addonsPrice[a] || 0);
 
 if(!confirm(`تأكيد الحجز بمبلغ ${total} LE؟`)) return;
 
