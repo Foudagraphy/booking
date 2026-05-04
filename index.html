@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Foudagarphy</title>
 
 <style>
+
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: url("bg.jpg") no-repeat center center/cover;
   color: white;
 }
 
+/* Overlay */
 .overlay {
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.6);
   min-height: 100vh;
+  backdrop-filter: blur(3px);
 }
 
 /* Header */
 .header {
   text-align: center;
-  padding: 40px;
+  padding: 40px 20px;
 }
 
 .header img {
-  width: 180px;
+  width: 160px;
 }
 
 .header h1 {
   color: #d4af37;
+  font-size: 28px;
+}
+
+.header p {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 /* Gallery */
@@ -40,7 +51,7 @@ body {
 }
 
 .gallery img {
-  height: 200px;
+  height: 180px;
   border-radius: 10px;
   transition: 0.3s;
 }
@@ -55,6 +66,12 @@ body {
   padding: 20px;
 }
 
+h2 {
+  color: #d4af37;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
 .package {
   background: #1a1a1a;
   border: 1px solid #d4af37;
@@ -62,15 +79,31 @@ body {
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
-  animation: fadeUp 1s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
 }
+
+.package:nth-child(1) { animation-delay: 0.1s; }
+.package:nth-child(2) { animation-delay: 0.2s; }
+.package:nth-child(3) { animation-delay: 0.3s; }
+.package:nth-child(4) { animation-delay: 0.4s; }
+.package:nth-child(5) { animation-delay: 0.5s; }
 
 .package h3 {
   color: #d4af37;
 }
 
+.package p {
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
 .price {
   font-size: 22px;
+  margin-top: 10px;
 }
 
 /* Reviews */
@@ -94,11 +127,15 @@ body {
 }
 
 input, select {
-  width: 80%;
+  width: 90%;
+  max-width: 400px;
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
   border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -106,7 +143,8 @@ button {
   color: black;
   padding: 12px;
   border: none;
-  width: 85%;
+  width: 90%;
+  max-width: 420px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
@@ -117,7 +155,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* WhatsApp Button */
+/* Floating WhatsApp */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -128,19 +166,50 @@ button:hover {
   border-radius: 50%;
   font-size: 20px;
   text-decoration: none;
+  z-index: 999;
 }
 
-/* Animation */
+/* Fixed Booking Button */
+.fixed-book {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #d4af37;
+  color: black;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  z-index: 999;
+  animation: pulse 2s infinite;
+}
+
+/* Animations */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header img {
+    width: 120px;
+  }
+
+  .gallery img {
+    height: 150px;
+  }
+}
+
 </style>
 
 </head>
@@ -169,31 +238,31 @@ button:hover {
 
   <div class="package">
     <h3>Package 1</h3>
-    <p>( تصوير السيشن + تابلوه صغير + ١٠ كروت مطبوعة )</p>
+    <p>تصوير السيشن + تابلوه صغير + 10 كروت مطبوعة</p>
     <div class="price">3000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 2</h3>
-    <p>( تصوير السيشن + البوم ٣٠ × ٤٥ + تابلوه ٤٠ × ٣٠ + ١٥ كارت مطبوع)</p>
+    <p>البوم 30×45 + تابلوه 40×30 + 15 كارت</p>
     <div class="price">4000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 3</h3>
-    <p>( تصوير السيشن + البوم ٣٠ × ٦٠ + تابلوه ٥٠ × ٤٠ + ٢٠ كارت طباعه )</p>
+    <p>البوم 30×60 + تابلوه + 20 كارت</p>
     <div class="price">4500 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 4</h3>
-    <p>( تصوير السيشن + البوم ٣٠ × ٨٠ + تابلوه ٥٠ × ٦٠ + ٢٥ كارت طباعه )</p>
+    <p>البوم 30×80 + تابلوه كبير + 25 كارت</p>
     <div class="price">5000 LE</div>
   </div>
 
   <div class="package">
     <h3>Package 5</h3>
-    <p>( تصوير السيشن + البوم ٣٠ × ٨٠ ( شباك ) + البوم صغير + مجموعة برواز زجاج + تابلوه ٥٠×٦٠ + تابلوه ٥٠×٤٠ + ٣٠ كارت طباعة)</p>
+    <p>باقة كاملة VIP + ألبومات + برواز + 30 كارت</p>
     <div class="price">6000 LE</div>
   </div>
 
@@ -203,17 +272,17 @@ button:hover {
 <div class="reviews">
   <h2>آراء العملاء</h2>
 
-  <div class="review">🔥 شغل ممتاز جدًا وتعامل راقي</div>
-  <div class="review">📸 الصور طلعت أحلى من المتوقع</div>
-  <div class="review">💯 أنصح بيه لأي عريس وعروسة</div>
+  <div class="review">🔥 شغل ممتاز جدًا</div>
+  <div class="review">📸 صور احترافية جدًا</div>
+  <div class="review">💯 أنصح بيه بشدة</div>
 </div>
 
 <!-- Booking -->
-<div class="booking">
+<div class="booking" id="booking">
   <h2>احجز الآن</h2>
 
   <input type="text" id="name" placeholder="اسمك">
-  
+
   <select id="package">
     <option>Package 1</option>
     <option>Package 2</option>
@@ -229,26 +298,36 @@ button:hover {
 
 </div>
 
-<!-- WhatsApp Floating Button -->
+<!-- Buttons -->
 <a class="whatsapp" href="https://wa.me/201551927206" target="_blank">💬</a>
+<a href="#booking" class="fixed-book">احجز الآن 📸</a>
 
 <script>
+
 function sendToWhatsApp() {
   var name = document.getElementById("name").value;
   var pack = document.getElementById("package").value;
   var date = document.getElementById("date").value;
 
-  var message = 
-  "السلام عليكم 👋\n" +
-  "عايز احجز سيشن 📸\n\n" +
-  "الاسم: " + name + "\n" +
-  "الباقة: " + pack + "\n" +
-  "التاريخ: " + date;
+  if (!name || !date) {
+    alert("من فضلك أكمل البيانات 📌");
+    return;
+  }
+
+  var message =
+`📸 حجز جديد - Foudagarphy
+
+👤 الاسم: ${name}
+📦 الباقة: ${pack}
+📅 التاريخ: ${date}
+
+برجاء تأكيد الحجز 🙏`;
 
   var url = "https://wa.me/201551927206?text=" + encodeURIComponent(message);
 
   window.open(url, "_blank");
 }
+
 </script>
 
 </body>
