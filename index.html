@@ -4,13 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Foudagarphy</title>
 
-<!-- SEO -->
 <meta name="description" content="احجز جلسة تصوير مع Foudagraphy - باكيدجات تصوير احترافية في مصر">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&display=swap" rel="stylesheet">
 
 <style>
@@ -29,7 +26,6 @@ body {
   min-height: 100vh;
 }
 
-/* animation */
 .fade {
   opacity: 0;
   transform: translateY(20px);
@@ -40,7 +36,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* HEADER */
 .header {
   text-align: center;
   padding: 30px 15px;
@@ -49,7 +44,6 @@ body {
 .header img { width: 120px; }
 .header h1 { color: #ffd700; }
 
-/* HERO GALLERY */
 .gallery-hero{
   display:flex;
   gap:10px;
@@ -70,7 +64,6 @@ body {
   filter:brightness(1.1);
 }
 
-/* FULLSCREEN IMAGE */
 .fullscreen {
   position: fixed;
   inset: 0;
@@ -86,7 +79,6 @@ body {
   max-height: 90%;
 }
 
-/* PACKAGES */
 .packages {
   text-align: center;
   padding: 20px;
@@ -103,9 +95,7 @@ body {
   transition: 0.3s;
 }
 
-.package:hover {
-  transform: translateY(-5px);
-}
+.package:hover { transform: translateY(-5px); }
 
 .package.active {
   border: 2px solid #ffd700;
@@ -113,13 +103,11 @@ body {
   box-shadow: 0 0 15px rgba(255,215,0,0.5);
 }
 
-/* ADDONS */
 .package.addon.active {
   border: 2px solid #25D366;
   background: #0f1a12;
 }
 
-/* TEXT */
 .title {
   color: #ffd700;
   font-size: 18px;
@@ -132,25 +120,21 @@ body {
   opacity: 0.9;
 }
 
-/* 💰 السعر الجديد */
 .price {
   margin-top: 12px;
   font-size: 22px;
   font-family: 'Tajawal', sans-serif;
   color: #ffd700;
   font-weight: 700;
-  letter-spacing: 1px;
   background: rgba(255,215,0,0.08);
   padding: 6px 10px;
   border-radius: 8px;
   display: inline-block;
 }
 
-/* BOOKING */
 .booking {
   text-align: center;
   padding: 20px;
-  scroll-margin-top: 80px;
 }
 
 input, select {
@@ -179,7 +163,6 @@ button:hover {
   filter: brightness(1.1);
 }
 
-/* FLOATING */
 .whatsapp, .call {
   position: fixed;
   right: 20px;
@@ -187,7 +170,6 @@ button:hover {
   padding: 14px;
   color: white;
   text-decoration: none;
-  z-index: 9999;
 }
 
 .whatsapp { bottom: 20px; background: #25D366; }
@@ -206,13 +188,11 @@ button:hover {
 
 <div class="overlay">
 
-<!-- HEADER -->
 <div class="header fade">
   <img src="logo.png">
   <h1>Foudagarphy</h1>
 </div>
 
-<!-- HERO IMAGES -->
 <div class="packages fade">
 <h2>Portfolio</h2>
 
@@ -224,14 +204,11 @@ button:hover {
 </div>
 </div>
 
-<!-- FULLSCREEN -->
 <div class="fullscreen" id="viewer" onclick="closeImage()">
   <img id="viewerImg">
 </div>
 
-<!-- PACKAGES -->
 <div class="packages fade">
-
 <h2>الباكيدجات</h2>
 
 <div class="package" onclick="selectPackage('Package 1', this)">
@@ -271,7 +248,52 @@ button:hover {
 
 </div>
 
-<!-- ADDONS + BOOKING + JS (نفس الكود بتاعك + تحسين send) -->
+<div class="packages fade">
+<h2>اضافات مع الباكدجات</h2>
+
+<div class="package addon" onclick="toggleAddon(this,'تصوير قاعة / بارتي')">
+<div># تصوير قاعة / بارتي 1500 جنيه</div>
+</div>
+
+<div class="package addon" onclick="toggleAddon(this,'تصوير اي مناسبة ف البيت')">
+<div># تصوير اي مناسبة ف البيت 1200 جنيه</div>
+</div>
+
+<div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن فقط')">
+<div># فيديو برومو سيشن فقط 3500 جنيه</div>
+</div>
+
+<div class="package addon" onclick="toggleAddon(this,'فيديو برومو سيشن + قاعة')">
+<div># فيديو برومو سيشن + قاعة 5000 جنيه</div>
+</div>
+
+</div>
+
+<div class="booking fade" id="booking">
+<h2>احجز الآن</h2>
+
+<input type="text" id="name" placeholder="اسمك">
+
+<select id="package" onchange="selectPackage(this.value, this)">
+<option value="">اختار الباكيدج</option>
+<option>Package 1</option>
+<option>Package 2</option>
+<option>Package 3</option>
+<option>Package 4</option>
+<option>Package 5</option>
+</select>
+
+<input type="date" id="date">
+
+<h3>الإجمالي: <span id="totalPrice">0</span> LE</h3>
+
+<button onclick="send()">احجز عبر واتساب</button>
+</div>
+
+</div>
+
+<a class="whatsapp" href="https://wa.me/201551927206?text=عايز%20استفسر%20عن%20الباكيدجات">💬</a>
+<a class="call" href="tel:201551927206">📞</a>
 
 <script>
 let selectedPackage = "";
@@ -301,9 +323,14 @@ document.querySelectorAll(".package").forEach(p=>{
 if(!p.classList.contains("addon")) p.classList.remove("active");
 });
 
+if(el.classList){
 el.classList.add("active");
+}
+
 document.getElementById("package").value = name;
+
 updateTotal();
+
 document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 }
 
